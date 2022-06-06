@@ -1,0 +1,77 @@
+<odoo>
+    <data>
+
+        <template id="assets_login" inherit_id="web.assets_frontend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/feicom_custom_odoo_login/static/src/css/custom_login.css"/>
+            </xpath>
+        </template>
+
+        <template id="login" inherit_id="web.login" name="Login Inherit">
+
+            <xpath expr="//form[@class='oe_login_form']" position="before">
+                <div class="text-center">
+                     <img t-attf-src="/web/binary/company_logo{{ '?dbname='+db if db else '' }}"/>
+                 </div>
+            </xpath>
+            <xpath expr="//form[@class='oe_login_form']" position="after">
+                <div class="text-center" t-if="not disable_footer">
+                    <a href="https://www.feicom.cm" target="_blank">Powered by <span>FEICOM</span></a>
+                </div>
+            </xpath>
+
+            <xpath expr="//form[@class='oe_login_form']" position="attributes">
+                <attribute name="class">login</attribute>
+            </xpath>
+
+            <xpath expr="//label[@for='db']" position="replace" />
+            <xpath expr="//label[@for='login']" position="replace" />
+            <xpath expr="//label[@for='password']" position="replace" />
+
+            <xpath expr="//input[@name='login']" position="before">
+                <marquee scrollamount="5" behavior="alternate" color="blue">BIENVENUE DANS AXIOME SOLUTION FEICOM</marquee>
+            </xpath>
+
+            <xpath expr="//input[@name='login']" position="attributes">
+                <attribute name="placeholder">Login</attribute>
+                <attribute name="class">login-input</attribute>
+            </xpath>
+
+
+            <xpath expr="//input[@name='password']" position="attributes">
+                <attribute name="placeholder">Password</attribute>
+                <attribute name="class">login-input</attribute>
+            </xpath>
+
+            <xpath expr="//div[contains(@class, 'oe_login_buttons')]" position="replace">
+               <div class="clearfix oe_login_buttons">
+                        <button type="submit" class="login-button">Connexion</button>
+                    </div>
+            </xpath>
+
+            <xpath expr="//div[contains(@class, 'field-db')]" position="replace">
+
+            </xpath>
+        </template>
+
+         <template id="portal_login" inherit_id="website.login_layout" name="Login Layout Inherit">
+        <xpath expr="//div[@class='oe_website_login_container']" position="after">
+            <style type="text/css">
+                #wrapwrap{
+                  background-image: url('/feicom_custom_odoo_login/static/src/img/bodylogin.jpg');
+                  background-size: 100% 100%;
+                  background-repeat: no-repeat;
+
+                }
+                .navbar{
+                    visibility: hidden;
+                }
+                footer{
+                    visibility: hidden;
+                }
+        </style>
+        </xpath>
+    </template>
+
+    </data>
+</odoo>
